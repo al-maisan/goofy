@@ -24,7 +24,6 @@ Generates the same 6-digit codes as the Go implementation.
 
 import argparse
 import sys
-from typing import Optional
 
 
 # Maximum number of UTF-8 bytes to process
@@ -58,8 +57,8 @@ def truncate_utf8(s: str, max_bytes: int) -> bytes:
             # This is a start byte or ASCII, check if valid
             try:
                 # Try to decode from this point to verify it's valid
-                truncated[:i+1].decode('utf-8')
-                return truncated[:i+1]
+                truncated[:i + 1].decode('utf-8')
+                return truncated[:i + 1]
             except UnicodeDecodeError:
                 # This start byte is incomplete, continue backwards
                 continue

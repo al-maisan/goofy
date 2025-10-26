@@ -50,7 +50,11 @@ def run_python_implementation(input_str: str, plain: bool = False) -> str:
     return six_digit_id(input_str, spaced=not plain)
 
 
-def test_case(input_str: str, expected_plain: str = None, expected_spaced: str = None) -> Tuple[bool, str, str, str, str]:
+def test_case(
+    input_str: str,
+    expected_plain: str = None,
+    expected_spaced: str = None
+) -> Tuple[bool, str, str, str, str]:
     """
     Test a single input string against both implementations.
 
@@ -68,14 +72,17 @@ def test_case(input_str: str, expected_plain: str = None, expected_spaced: str =
 
         # Check if implementations match each other
         if go_plain != python_plain or go_spaced != python_spaced:
-            return False, go_plain, python_plain, go_spaced, python_spaced, "✗ Implementations differ"
+            return (False, go_plain, python_plain, go_spaced, python_spaced,
+                    "✗ Implementations differ")
 
         # Check against expected values if provided
         if expected_plain and go_plain != expected_plain:
-            return False, go_plain, python_plain, go_spaced, python_spaced, f"✗ Plain format differs from expected: {expected_plain}"
+            return (False, go_plain, python_plain, go_spaced, python_spaced,
+                    f"✗ Plain format differs from expected: {expected_plain}")
 
         if expected_spaced and go_spaced != expected_spaced:
-            return False, go_plain, python_plain, go_spaced, python_spaced, f"✗ Spaced format differs from expected: {expected_spaced}"
+            return (False, go_plain, python_plain, go_spaced, python_spaced,
+                    f"✗ Spaced format differs from expected: {expected_spaced}")
 
         return True, go_plain, python_plain, go_spaced, python_spaced, "✓ Match"
 
@@ -138,7 +145,7 @@ def main():
             if len(display_str) > 40:
                 display_str = display_str[:37] + "...'"
 
-            print(f"\n{'='*80}")
+            print(f"\n{'=' * 80}")
             print(f"Input: {display_str}")
             print(f"  Go (plain):     {go_plain}")
             print(f"  Python (plain): {py_plain}")
@@ -160,7 +167,7 @@ def main():
 
         except Exception as e:
             display_str = repr(input_str) if input_str else "''"
-            print(f"\n{'='*80}")
+            print(f"\n{'=' * 80}")
             print(f"Input: {display_str}")
             print(f"  ERROR: {e}")
             failed += 1

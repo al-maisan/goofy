@@ -1,0 +1,24 @@
+# Golden test file for cross-language verification
+# Format: input_string|expected_plain_output|expected_spaced_output
+# Lines starting with # are comments
+
+hello world!|259144|25 91 44
+hello world!!|532267|53 22 67
+hello world!!!|090622|09 06 22
+hello world!!!!|100461|10 04 61
+hello world!!!!!|634980|63 49 80
+12345678901234567890123456789012|284945|28 49 45
+12345678901234567890123456789012!|284945|28 49 45
+12345678901234567890123456789012!!|284945|28 49 45
+||665603|66 56 03
+a|967366|96 73 66
+test|914231|91 42 31
+0123456789|253512|25 35 12
+exactly16chars!|896202|89 62 02
+exactly 32 characters here!!|568046|56 80 46
+UPPERCASE|005329|00 53 29
+MixedCase123|780906|78 09 06
+special!@#$%^&*|818723|81 87 23
+unicode: 你好|777614|77 76 14
+12345678901234567890123456789你|544963|54 49 63
+more than 32 characters will be truncated here|444477|44 44 77
