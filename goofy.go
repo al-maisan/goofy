@@ -30,13 +30,13 @@ const (
 	MaxBytes = 32
 )
 
-// SixDigitID generates a 6-digit ID from a string using FNV-1a hash.
+// sixDigitID generates a 6-digit ID from a string using FNV-1a hash.
 // It processes up to the first MaxBytes (32) bytes of UTF-8 encoding,
 // ensuring multibyte sequences are not split.
 //
 // Returns a 6-digit string (000000-999999).
 // Collisions are expected and acceptable.
-func SixDigitID(s string) string {
+func sixDigitID(s string) string {
 	const (
 		offset64 = 1469598103934665603
 		prime64  = 1099511628211
@@ -71,8 +71,8 @@ func truncateUTF8(s string, maxBytes int) string {
 	return ""
 }
 
-// FormatSpaced formats a 6-digit ID as "XX XX XX"
-func FormatSpaced(id string) string {
+// formatSpaced formats a 6-digit ID as "XX XX XX"
+func formatSpaced(id string) string {
 	if len(id) != 6 {
 		return id
 	}
@@ -110,12 +110,12 @@ func main() {
 	}
 
 	word := flag.Arg(0)
-	id := SixDigitID(word)
+	id := sixDigitID(word)
 
 	// -plain overrides -spaced
 	if *plain {
 		fmt.Println(id)
 	} else {
-		fmt.Println(FormatSpaced(id))
+		fmt.Println(formatSpaced(id))
 	}
 }

@@ -159,12 +159,15 @@ return (hash mod 1,000,000) formatted as 6 digits
 
 ### Go
 
-```go
-// SixDigitID generates a 6-digit ID from a string
-func SixDigitID(s string) string
+**Note:** The Go implementation is in `package main` (CLI tool). Functions are not exported for library use. If you need a Go library, copy the implementation into your own package.
 
-// FormatSpaced formats a 6-digit ID as "XX XX XX"
-func FormatSpaced(id string) string
+Internal implementation (for reference):
+```go
+// sixDigitID generates a 6-digit ID from a string
+func sixDigitID(s string) string
+
+// formatSpaced formats a 6-digit ID as "XX XX XX"
+func formatSpaced(id string) string
 
 // truncateUTF8 safely truncates to max bytes without splitting UTF-8
 func truncateUTF8(s string, maxBytes int) string
