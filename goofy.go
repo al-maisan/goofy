@@ -11,7 +11,7 @@ func SixDigitID(s string) string {
 		prime64  = 1099511628211
 	)
 	var h uint64 = offset64
-	for i := 0; i < len(s) && i < 16; i++ {
+	for i := 0; i < len(s) && i < 32; i++ {
 		h ^= uint64(s[i])
 		h *= prime64
 	}

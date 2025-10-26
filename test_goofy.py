@@ -55,8 +55,9 @@ def main():
         ("hello world!!!", "09 06 22"),
         ("hello world!!!!", "10 04 61"),
         ("hello world!!!!!", "63 49 80"),
-        ("hello world!!!!!!", "63 49 80"),  # Should match previous (16 char limit)
-        ("hello world!!!!!!!", "63 49 80"),  # Should match previous (16 char limit)
+        ("12345678901234567890123456789012", "28 49 45"),
+        ("12345678901234567890123456789012!", "28 49 45"),
+        ("12345678901234567890123456789012!!", "28 49 45"),
     ]
 
     # Additional test cases
@@ -66,7 +67,9 @@ def main():
         ("test", None),  # Short string
         ("0123456789", None),  # Numbers
         ("exactly16chars!", None),  # Exactly 16 chars
-        ("more than 16 characters long", None),  # More than 16 chars
+        ("exactly 32 characters here!!", None),  # Exactly 32 chars
+        ("more than 32 characters in this string for testing", None),  # More than 32 chars
+        ("more than 32 characters in this string for testing!", None),  # Should match previous (32 byte limit)
         ("UPPERCASE", None),  # Uppercase
         ("MixedCase123", None),  # Mixed case with numbers
         ("special!@#$%^&*", None),  # Special characters

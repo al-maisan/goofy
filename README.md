@@ -1,5 +1,5 @@
 # goofy
-reads a word from the command line and prints its 6-digit hash ID — max 16 bytes (UTF-8), collisions are fine
+reads a word from the command line and prints its 6-digit hash ID — max 32 bytes (UTF-8), collisions are fine
 
 Available in both Go and Python implementations that produce identical results.
 
@@ -18,10 +18,12 @@ $ ./goofy "hello world!!!!"
 10 04 61
 $ ./goofy "hello world!!!!!"
 63 49 80
-$ ./goofy "hello world!!!!!!"
-63 49 80
-$ ./goofy "hello world!!!!!!!"
-63 49 80
+$ ./goofy "12345678901234567890123456789012"
+28 49 45
+$ ./goofy "12345678901234567890123456789012!"
+28 49 45
+$ ./goofy "12345678901234567890123456789012!!"
+28 49 45
 ```
 
 ## Python Implementation
@@ -62,13 +64,13 @@ $ python3 test_goofy.py
 The test suite includes:
 - All examples from this README
 - Edge cases (empty strings, Unicode, special characters)
-- Long strings (verifies 16-byte limit)
+- Long strings (verifies 32-byte limit)
 - 17 comprehensive test cases
 
 ## How It Works
 
 Both implementations use the FNV-1a 64-bit hash algorithm:
-- Processes the first 16 bytes of the UTF-8 encoded input
+- Processes the first 32 bytes of the UTF-8 encoded input
 - Returns the hash modulo 1,000,000 as a 6-digit string (000000-999999)
 - Collisions are expected and acceptable for this use case
 

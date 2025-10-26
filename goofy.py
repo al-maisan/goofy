@@ -12,7 +12,7 @@ def six_digit_id(s: str) -> str:
     Generate a 6-digit ID from a string using FNV-1a hash.
 
     Args:
-        s: Input string (only first 16 bytes of UTF-8 encoding are used)
+        s: Input string (only first 32 bytes of UTF-8 encoding are used)
 
     Returns:
         6-digit string (000000-999999)
@@ -23,9 +23,9 @@ def six_digit_id(s: str) -> str:
     MASK64 = 0xFFFFFFFFFFFFFFFF  # 64-bit mask
 
     h = OFFSET64
-    # Convert string to UTF-8 bytes and process only first 16 bytes
+    # Convert string to UTF-8 bytes and process only first 32 bytes
     bytes_data = s.encode('utf-8')
-    for i in range(min(len(bytes_data), 16)):
+    for i in range(min(len(bytes_data), 32)):
         # XOR with byte value
         h ^= bytes_data[i]
         # Multiply by prime and mask to 64 bits
